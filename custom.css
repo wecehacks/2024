@@ -484,14 +484,19 @@ p {
 
 .masthead h1,
 .title-text {
-  font-family: "Title";
+  font-family: "Kode Mono", monospace;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+
+  /*font-family: "Title";*/
   text-align: center;
-  opacity: 1;
-  background: url("../img/title-scrolling.png");
+  /*opacity: 1;*/
+  /*background: url("../img/title-scrolling.png");
   background-repeat: repeat-x;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: animate 150s linear infinite;
+  animation: animate 150s linear infinite;*/
 }
 @keyframes animate {
   from {
