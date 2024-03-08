@@ -61,7 +61,11 @@
       color: white;
     }
     #mainNav.navbar-shrink {
-      background-color: #fff;
+      /* background-color: #fff; */
+      background-color: #E5A353;
+      /* E5A353 */
+      /* 78AEFC */
+      /* 576DDB */
     }
     #mainNav.navbar-shrink .navbar-brand {
       color: #161616;
@@ -287,31 +291,56 @@
   .bg-primary {
     background-color: #64a19d !important;
   }
-  
-  .text-primary {
-    /* color: #64a19d !important; */
-    color: #AD88C6  !important;
+
+  .faq-icon{
+    /* Use linear gradient for background */
+    background: linear-gradient(to bottom, #576DDB, #E5A353); /* Example gradient colors */
+
+    /* Clip the gradient to the text */
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    /* Make the text transparent to show the gradient */
+    color: transparent;
   }
 
   .footer-icon{
-    color: #7469B6 !important;
+    /* Use linear gradient for background */
+    background: linear-gradient(to bottom, #5a84be, #576DDB); /* Example gradient colors */
+
+    /* Clip the gradient to the text */
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    /* Make the text transparent to show the gradient */
+    color: transparent;
+    font-size: 20px;
   }
   
   footer {
     padding: 5rem 0;
   }
   
-  body {
-    /* background-color: #e1afbe; */
-    /* background-color: #E5A353; */
-    background: linear-gradient(to bottom, #E5A353, #c07ca3);
-  }
-
   .block-bg{
-    background-color: #ffefef;
+    background-color: #f3dac6;
+    border-radius: 40px; 
+    border: 2px solid #576DDB;
+    /* background: linear-gradient(to bottom, #78AEFC, #E5A353);  */
   }
 
   .gray-text{
-    color: #474043;
+    color: #322e29;
   }
-  /* FFE6E6 */
+
+  .bg-pic{
+    /* background: linear-gradient(to bottom, #E5A353, #c07ca3);  */
+    background-image: url('../img/bg/IMG_1550.jpg'); 
+    background-size: cover; 
+    background-repeat: no-repeat; 
+    background-position: 30% 50% ; 
+    opacity: 0.95;
+  }
+
+  /* E5A353 */
+  /* 78AEFC */
+  /* 576DDB */
