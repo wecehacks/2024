@@ -321,6 +321,11 @@
     padding: 5rem 0;
   }
   
+  .footer-text{
+    color: #454f7e;
+    font-size: 10px;
+  }
+  
   .block-bg{
     background-color: #f3dac6;
     border-radius: 40px; 
