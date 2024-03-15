@@ -76,7 +76,9 @@
       border-bottom: 0.25rem solid transparent;
     }
     #mainNav.navbar-shrink .nav-link:hover {
-      color: #64a19d;
+      color: #505c8e;
+      /* 4c8dd3 */
+      /* 4154a8 */
     }
     #mainNav.navbar-shrink .nav-link:active {
       color: #467370;
