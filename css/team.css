@@ -1,0 +1,39 @@
+.team-bg-pic{
+    background-image: url('../img/bg/mushroom.png'); 
+    background-size: cover; 
+    background-repeat: no-repeat; 
+    background-position: 30% 50% ; 
+    /* opacity: 0.95; */
+  }
+
+  #mainNav.navbar-shrink {
+    /* background-color: #fff; */
+    background-color: #6975b3;
+    /* E5A353 */
+    /* 78AEFC */
+    /* 576DDB */
+  }
+
+  #mainNav.navbar-shrink .nav-link {
+    color: #252525;
+    padding: 1.5rem 1.5rem 1.25rem;
+    border-bottom: 0.25rem solid transparent;
+  }
+
+  #mainNav.navbar-shrink .nav-link:hover {
+    color: #b289b3;
+  }
+
+  .icon{
+    color: #6975b3 !important;
+  }
+
+  .icon-spec{
+    /* color: #8d96c6 !important; */
+    color: #6c91be !important;
+  }
+
+  .footer-text{
+    color: #8a95ce;
+    font-size: 10px;
+  }
