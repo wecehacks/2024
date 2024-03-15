@@ -294,6 +294,11 @@
     background-color: #64a19d !important;
   }
 
+  .column1{
+    flex: auto;
+    padding: 5%;
+  }
+
   .faq-icon{
     /* Use linear gradient for background */
     background: linear-gradient(to bottom, #576DDB, #E5A353); /* Example gradient colors */
