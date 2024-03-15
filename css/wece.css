@@ -7,6 +7,7 @@
  #mainNav {
     min-height: 56px;
     background-color: #fff;
+    font-size: 14px;
   }
   
   #mainNav .navbar-toggler {
@@ -294,9 +295,69 @@
     background-color: #64a19d !important;
   }
 
+  .updown-animation{
+    animation-name: infiniteupdown;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease;
+    transition: all .2s;
+  }
+
+  @keyframes infiniteupdown {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px); /* Adjust as needed */
+    }
+    100% {
+        transform: translateY(0);
+    }
+  }
+
+  .updown-animation2{
+    animation-name: infiniteupdown2;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease;
+    transition: all .3s;
+  }
+
+  @keyframes infiniteupdown2 {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px); /* Adjust as needed */
+    }
+    100% {
+        transform: translateY(0);
+    }
+  }
+
+  .text-center{
+    position: relative;
+  }
+
   .column1{
-    flex: auto;
-    padding: 5%;
+    position: absolute; 
+    top: 70px; 
+    left: 110px; 
+    transform: skew(7deg);
+  }
+
+  .column2{
+    position: absolute; 
+    top: 250px; 
+    right: 130px; 
+    transform: skew(-7deg);
+  }
+
+  .column3{
+    position: absolute; 
+    top: 272px; 
+    left: 190px; 
+    transform: skew(2deg);
   }
 
   .faq-icon{
