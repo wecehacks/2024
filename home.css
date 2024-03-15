@@ -154,3 +154,14 @@ body, html {
       transform: translateY(0px);
     }
   }
+
+  .footer-text {
+    font-family: "Inconsolata", monospace;
+    color:white;
+    font-size: 15px;
+  }
+  i {
+    color:white;
+    font-size: 20px;
+  }
+  
