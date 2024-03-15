@@ -6,6 +6,10 @@
     /* opacity: 0.95; */
   }
 
+  #mainNav {
+    font-size: 14px;
+  }
+
   #mainNav.navbar-shrink {
     /* background-color: #fff; */
     background-color: #6975b3;
@@ -18,6 +22,7 @@
     color: #252525;
     padding: 1.5rem 1.5rem 1.25rem;
     border-bottom: 0.25rem solid transparent;
+    font-size: 14px;
   }
 
   #mainNav.navbar-shrink .nav-link:hover {
