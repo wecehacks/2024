@@ -1,0 +1,88 @@
+#mainNav {
+    min-height: 56px;
+    /* background-color: #fff; */
+    /* font-family: "Nunito", sans-serif; */
+    font-family: "Varela Round", sans-serif;
+  }
+  
+  #mainNav .navbar-toggler {
+    font-size: 80%;
+    padding: 0.75rem;
+    color: #eee7ff;
+    border: 1px solid #eee7ff;
+  }
+  
+  #mainNav .navbar-toggler:focus {
+    outline: none;
+  }
+  
+  #mainNav .navbar-brand {
+    color: #161616;
+    font-weight: 700;
+    padding: .9rem 0;
+  }
+  
+  #mainNav .navbar-nav .nav-item:hover {
+    color: #BED5FF;
+    outline: none;
+    background-color: transparent;
+  }
+  
+  #mainNav .navbar-nav .nav-item:active, #mainNav .navbar-nav .nav-item:focus {
+    outline: none;
+    background-color: transparent;
+  }
+  
+  @media (min-width: 400px) {
+    #mainNav {
+      padding-top: 10px;
+      padding-bottom: 0;
+      border-bottom: none;
+      background-color: transparent;
+      transition: background-color 0.3s ease-in-out;
+      float: right;
+    }
+    #mainNav .navbar-brand {
+      padding: .5rem 0;
+      color: rgba(255, 255, 255, 0.5);
+    }
+    #mainNav .nav-link {
+      transition: none;
+      padding: 2rem 1.5rem;
+      color: rgba(255, 248, 253, 0.951);
+    }
+    #mainNav .nav-link:hover {
+      color: #BED5FF;
+    }
+    #mainNav .nav-link:active {
+      color: #BED5FF;
+    }
+    #mainNav.navbar-shrink {
+      /* background-color: #fff; */
+      background-color: #090119;
+      /* E5A353 */
+      /* 78AEFC */
+      /* 576DDB */
+    }
+    #mainNav.navbar-shrink .navbar-brand {
+      color: rgba(255, 248, 253, 0.951);
+    }
+    #mainNav.navbar-shrink .nav-link {
+      color: rgba(255, 248, 253, 0.951);
+      padding: 1.5rem 1.5rem 1.25rem;
+      border-bottom: 0.25rem solid transparent;
+    }
+    #mainNav.navbar-shrink .nav-link:hover {
+      color: #BED5FF;
+      /* 4c8dd3 */
+      /* 4154a8 */
+    }
+    #mainNav.navbar-shrink .nav-link:active {
+      color: #BED5FF;
+    }
+    #mainNav.navbar-shrink .nav-link.active {
+      color: #BED5FF;
+      outline: none;
+      border-bottom: 0.25rem solid #eee7ff;
+    }
+  }
