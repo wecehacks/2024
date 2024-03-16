@@ -1,0 +1,28 @@
+
+.schedule-column {
+	width: 100%;
+}
+
+.schedule-bubble {
+	position: relative;
+	display: block;
+	width: 50%;
+	margin: auto;
+}
+
+.schedule-day-header-wrapper {
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 2rem;
+	border-radius: 1rem;
+	width: fit-content;
+	padding: 1rem;
+	background-color: rgba(0, 0, 0, 0.5);
+}
+.schedule-day-header {
+	width: fit-content;
+	margin: auto;
+}
+.schedule-card-time-text {
+	font-size: 1.2rem;
+}
