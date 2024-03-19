@@ -341,7 +341,7 @@
 
   .column1{
     position: absolute; 
-    top: 70px; 
+    top: 110px; 
     left: 110px; 
     transform: skew(7deg);
   }
