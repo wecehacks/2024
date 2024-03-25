@@ -1,0 +1,66 @@
+  .updown-animation {
+    animation-name: infiniteupdown;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease;
+    transition: all .2s;
+  }
+
+  @keyframes infiniteupdown {
+    0% {
+      transform: translateY(0);
+    }
+
+    50% {
+      transform: translateY(-10px);
+      /* Adjust as needed */
+    }
+
+    100% {
+      transform: translateY(0);
+    }
+  }
+
+  .updown-animation2 {
+    animation-name: infiniteupdown2;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease;
+    transition: all .3s;
+  }
+
+  @keyframes infiniteupdown2 {
+    0% {
+      transform: translateY(0);
+    }
+
+    50% {
+      transform: translateY(-20px);
+      /* Adjust as needed */
+    }
+
+    100% {
+      transform: translateY(0);
+    }
+  }
+
+  .column1{
+    position: absolute; 
+    top: 40px; 
+    left: 200px; 
+    transform: skew(7deg);
+  }
+
+  .column2{
+    position: absolute; 
+    top: 230px; 
+    right: 130px; 
+    transform: skew(-7deg);
+  }
+
+  .column3{
+    position: absolute; 
+    top: 222px; 
+    left: 100px; 
+    transform: skew(2deg);
+  }
