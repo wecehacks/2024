@@ -712,7 +712,7 @@ p {
 }
 
 #mainNav .nav-link:hover {
-    -webkit-text-fill-color: rgba(240, 176, 54) !important;
+    -webkit-text-fill-color: rgba(240, 176, 54);
 }
 
 #mainNav .navbar-nav .nav-item:hover {
