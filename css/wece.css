@@ -62,7 +62,6 @@
       color: white;
     }
     #mainNav.navbar-shrink {
-      /* background-color: #fff; */
       background-color: #E5A353;
       /* E5A353 */
       /* 78AEFC */
@@ -398,7 +397,6 @@
     background-color: #f3dac6;
     border-radius: 40px; 
     border: 2px solid #576DDB;
-    /* background: linear-gradient(to bottom, #78AEFC, #E5A353);  */
   }
 
   .gray-text{
@@ -406,7 +404,6 @@
   }
 
   .bg-pic{
-    /* background: linear-gradient(to bottom, #E5A353, #c07ca3);  */
     background-image: url('../img/bg/IMG_1550.jpg'); 
     background-size: cover; 
     background-repeat: no-repeat; 

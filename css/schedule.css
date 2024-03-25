@@ -17,12 +17,18 @@
 	border-radius: 1rem;
 	width: fit-content;
 	padding: 1rem;
-	background-color: rgba(0, 0, 0, 0.5);
+	background-color: rgba(0, 0, 0, 0.352);
 }
 .schedule-day-header {
 	width: fit-content;
 	margin: auto;
 }
 .schedule-card-time-text {
-	font-size: 1.2rem;
+	font-size: 0.9rem;
+}
+
+.event{
+	color: #322e29;
+	padding: 10px;
+	font-weight: lighter;
 }
