@@ -17,7 +17,7 @@
 	border-radius: 1rem;
 	width: fit-content;
 	padding: 1rem;
-	background-color: rgba(0, 0, 0, 0.5);
+	background-color: rgba(0, 0, 0, 0.384);
 }
 .schedule-day-header {
 	width: fit-content;
@@ -25,4 +25,9 @@
 }
 .schedule-card-time-text {
 	font-size: 1.2rem;
+}
+
+.title{
+	color: #322e29;
+	padding: 10px;
 }
