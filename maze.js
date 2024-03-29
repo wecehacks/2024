@@ -934,6 +934,8 @@ function restartGameKeyboard(evt) {
         window.removeEventListener("keydown", restartGameKeyboard, false);
         window.removeEventListener("touchstart", restartGameTouch, false);
         drawMenu();
+        collected = [];
+        xyCounter = {};
     }
 }
 

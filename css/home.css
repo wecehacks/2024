@@ -55,7 +55,7 @@ body, html {
 }
 
 .hero-image {
-    background-image: url("../img/weceBanner.png");
+    background-image: url("img/weceBanner.png");
     height: 100%;
     background-position: center;
     background-repeat: no-repeat;
