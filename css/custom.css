@@ -38,9 +38,8 @@ body {
 }
 
 .footer-section {
-	position: absolute;
-  width: 100%;
-  bottom: 0;
+  margin-top: -2em;
+	padding: 2em 0 2em 0;
 	opacity: 1;
 }
 
@@ -188,6 +187,7 @@ header, section {
 .team-image {
   border-top-right-radius: 3em;
   border-top-left-radius: 3em;
+  width: 100%;
 }
 
 .team-textbox {
