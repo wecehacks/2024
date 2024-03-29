@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="user-scalable=no">
+    <title> The Maze Game </title>
+    <!-- Bootstrap core CSS -->
+		<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+		<!-- Custom fonts for this template -->
+		<link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
+
+    <link href="css/wece.css" rel="stylesheet">
+    <link href="css/stylesheet.css" rel="stylesheet">
+
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+  </head>
+
+  <body class="maze">
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+			<div id="navbar-container" class="container">
+				<a id="logo">
+					<ul class="navbar-nav mr-auto">
+						<li class="nav-item">
+							<a class="nav-link js-scroll-trigger nexa" href="index.html">
+								<img src="img\wece_transparent.png" style="margin:0; height:50px" alt="Logo">
+							</a>
+						</li>
+            <li class="nav-item">
+							<a class="nav-link js-scroll-trigger nexa" href="index.html">ABOUT</a>
+						</li>
+					</ul>
+				</a>
+			</div>
+		</nav>
+
+    <div style="position: relative;" id="canvas-div">
+      <canvas id="menu-canvas" style="position: absolute; left: 0; top: 0; z-index: 1;"></canvas>
+      <canvas id="maze-canvas" style="position: absolute; left: 0; top: 0; z-index: 0;">
+        <p>Your browser does not support the HTML5 Canvas feature.</p>
+      </canvas>
+      <noscript>
+        <p>JavaScript is not enabled. To play the game, you need to enable
+          it.</p>
+      </noscript>
+    </div>
+
+    <script type="text/javascript" src="maze.js"></script>
+  </body>
+
+</html>
