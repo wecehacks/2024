@@ -110,34 +110,35 @@ var PAUSE_OFFSET_Y = 5;
 // Colour definitions
 // ------------------
 
+var YELLOW_L = '#f1ca77';
+var YELLOW_D = '#e59841';
+
 var ORANGE_LIGHT = "#ffd5a2";
 var ORANGE_DARK = "#db9035";
-
-var NAVY_LIGHT = "#8c9adb";
-var NAVY_DARK = "#576DDB";
-
-var SKY_L = '#78AEFC';
-var SKY_D = '#3668ad';
 
 var PINK_PURPLE_L = "#b289b3";
 var PINK_PURPLE_D = "#714671";
 
-var PLAYER_COLOUR = "#E5A353"; //box inner colour -) orange
-var PLAYER_TRIM_COLOUR = "#E5A353"; //box outer colour -) black
+var PINK_L = '#de7c9b';
+var PINK_D = '#a3506a';
 
-var SOLUTION_FILL_COLOUR = "#FFCC00"; //the more common no special effect dots -) yellow
-var SOLUTION_STROKE_COLOUR = "#755E02"; //its outer layer
+var RED_L = '#ff716c';
+var RED_D = '#b13632';
 
-var RANDOM_FILL_COLOUR = "#64a19d"; //the less common special effect dots -) green
-                            // also easy
-var RANDOM_STROKE_COLOUR = "#0A540D"; //its outer layer
-                            // also easy outer + text
+var PURPLE_L = '#dbb4e3';
+var PURPLE_D = '#8a6591';
 
-var END_FILL_COLOUR = "#E739FA"; //ending point innre colour
-var END_STROKE_COLOUR = "#A028AD"; //outer
+var NAVY_LIGHT = "#8c9adb";
+var NAVY_DARK = "#4a5cb5";
 
-var MESSAGE_FILL_COLOUR = "#90EBF0"; // instruction in game background
-var MESSAGE_STROKE_COLOUR = "blue"; //instruction text
+var SKY_L = '#78AEFC';
+var SKY_D = '#3668ad';
+
+var TURQ_L = '#64a19d';
+var TURQ_D = '#265f5b';
+
+var BLUE_G_L = '#8991ba';
+var BLUE_G_D = '#404c89';
 
 // Colours for the touchscreen areas
 var UP_COLOUR = "#F2B01F";
@@ -145,15 +146,8 @@ var DOWN_COLOUR = "#73F175";
 var LEFT_COLOUR = "#73CDF1";
 var RIGHT_COLOUR = "#E773F1";
 
-// Colours for the timer
-var TIMER_FILL_COLOUR = MESSAGE_FILL_COLOUR;
-var TIMER_STROKE_COLOUR = MESSAGE_STROKE_COLOUR;
-
-var WARNING_FILL_COLOUR = "#FF8400"; // warning filling + medium
-var WARNING_STROKE_COLOUR = "#8A4700";
-
-var DANGER_FILL_COLOUR = "#FF7661"; // danger filling + hard
-var DANGER_STROKE_COLOUR = "#913324";
+//font
+menuContext.font = '40px "Varela Round"';
 
 // players
 let players = [];
@@ -171,10 +165,28 @@ img5.src = 'img/maze/monkey.jpg';
 players.push(img5);
 let index = 0;
 
-menuContext.font = '40px "Varela Round"';
+// components of lc-3
+let components = [];
+var alu = new Image();
+alu.src = 'img/maze/alu.png';
+components.push(alu);
+var adder = new Image();
+adder.src = 'img/maze/adder.png';
+components.push(adder);
+var lc3 = new Image();
+lc3.src = 'img/maze/mux.png';
+components.push(lc3);
+var dflipflop = new Image();
+dflipflop.src = 'img/maze/reg.png';
+components.push(dflipflop);
 
-var component = new Image();
-component.src = 'img/maze/alu.png'; // Replace 'path/to/your/image.png' with the path to your image
+let xyCounter = {};
+let collected = [];
+
+// lc 3
+var lc3 = new Image();
+lc3.src = 'img/maze/lc3.png';
+
 // --------------
 // Start the fun!
 // --------------
@@ -202,63 +214,67 @@ function drawMenu() {
 
     // Draw the difficulty boxes
     easyTopLeftX = 0.5 * (menuCanvas.width - diffBoxWidth);
-    easyTopLeftY = 0.7 * menuCanvas.height - 0.5 * diffBoxHeight;
+    easyTopLeftY = 0.65 * menuCanvas.height - 0.5 * diffBoxHeight;
     drawRect(easyTopLeftX, easyTopLeftY,
              diffBoxWidth, diffBoxHeight,
              menuContext,
-             ORANGE_LIGHT, ORANGE_DARK); //easy?
+             ORANGE_LIGHT, ORANGE_DARK); 
 
     mediumTopLeftX = 0.5 * (menuCanvas.width - diffBoxWidth);
-    mediumTopLeftY = 0.8 * menuCanvas.height - 0.5 * diffBoxHeight;
+    mediumTopLeftY = 0.75 * menuCanvas.height - 0.5 * diffBoxHeight;
     drawRect(mediumTopLeftX, mediumTopLeftY,
              diffBoxWidth, diffBoxHeight,
              menuContext,
              SKY_L, SKY_D);
 
     hardTopLeftX = 0.5 * (menuCanvas.width - diffBoxWidth);
-    hardTopLeftY = 0.9 * menuCanvas.height - 0.5 * diffBoxHeight;
+    hardTopLeftY = 0.85 * menuCanvas.height - 0.5 * diffBoxHeight;
     drawRect(hardTopLeftX, hardTopLeftY,
              diffBoxWidth, diffBoxHeight,
              menuContext,
              PINK_PURPLE_L, PINK_PURPLE_D);
-
-    // Draw the "MAZE.js" icon
-    drawIcon();
 
     // Headings
     menuContext.fillStyle = "black";
     menuContext.font = '40px "Varela Round"';
     menuContext.fillText("Rules:",
                          0.5 * menuCanvas.width,
-                         0.17 * menuCanvas.height);
+                         0.15 * menuCanvas.height);
 
-    menuContext.font = '30px "Varela Round"';
+    menuContext.font = '20px "Varela Round"';
 
-    wrapText("Your goal is to navigate the maze to the destination before " +
-             "the time runs out. You need to collect the yellow spots and " +
-             "XXXXXX before you finish the game, and each XXXXXX gives " +
-             "you 5 more seconds on the clock. Good luck!",
-             0.5 * menuCanvas.width, 0.27 * menuCanvas.height,
+    wrapText("Your goal is to navigate the maze to the destination and " +
+             "construct a LC-3 program before the time runs out. You need to " +
+             "collect components for LC-3 and yellow points before you finish " +
+             "the game, and each component gives you 5 more seconds on the clock. " +
+             "Good Luck!",
+             0.5 * menuCanvas.width, 0.25 * menuCanvas.height,
              0.75 * menuCanvas.width, 40);
 
     menuContext.font = '40px "Varela Round"';
     menuContext.fillText("Please select difficulty:",
                          0.5 * menuCanvas.width,
-                         0.6 * menuCanvas.height);
+                         0.55 * menuCanvas.height);
 
     menuContext.font = '30px "Varela Round"';
     menuContext.fillStyle = ORANGE_DARK;
     menuContext.fillText("Easy",
                          0.5 * menuCanvas.width,
-                         0.7 * menuCanvas.height);
+                         0.65 * menuCanvas.height);
     menuContext.fillStyle = SKY_D;
     menuContext.fillText("Medium",
                          0.5 * menuCanvas.width,
-                         0.8 * menuCanvas.height);
+                         0.75 * menuCanvas.height);
     menuContext.fillStyle = PINK_PURPLE_D;
     menuContext.fillText("Hard",
                          0.5 * menuCanvas.width,
-                         0.9 * menuCanvas.height);
+                         0.85 * menuCanvas.height);
+
+    menuContext.font = '16px "Varela Round"';  
+    menuContext.fillStyle = 'black';              
+    menuContext.fillText("Hint: You can just type E, M, H",
+                         0.5 * menuCanvas.width,
+                         0.95 * menuCanvas.height);
 
     window.addEventListener("resize", resizeMenu, false);
     window.addEventListener("click", menuCheckClick, false);
@@ -338,18 +354,6 @@ function startGame(difficulty) {
     window.removeEventListener("resize", resizeMenu, false);
 
     initialiseGame(difficulty);
-}
-
-function drawIcon() {
-    // Draw the maze.js icon
-
-    // var icon = new Image();
-    // icon.src = "maze-icon.png";
-    // icon.onload = function() {
-    //     menuContext.drawImage(icon,
-    //                           0.5 * menuCanvas.width - 150,
-    //                           0.025 * menuCanvas.height)
-    // }
 }
 
 function wrapText(text, x, y, maxWidth, lineHeight) {
@@ -590,8 +594,6 @@ function placeRandomCounters() {
     // Place random counters that the players needs to pick up throughout the
     // maze
 
-    // One fifth as many random counters to pick up as solution counters
-    // randomTotal = Math.ceil(solutionTotal / 5);
     randomTotal = 4;
 
     var i = 0, cell;
@@ -883,6 +885,9 @@ function checkCounters(x, y) {
         // Sitting on random counter
         randomCounter++;
 
+        // Add the component to collected
+        collected.push(xyCounter[`${x},${y}`]);
+
         // Unset cell random counter
         maze[x][y] &= ~32;
 
@@ -1018,17 +1023,31 @@ function drawCounters() {
 
     mazeContext.lineWidth = 5;
 
+    let count = 0;
+
     for (var i = 0; i < m; i++) {
         for (var j = 0; j < n; j++) {
             // if (maze[i][j] & 16) {
             if (maze[i][j] & 16) {
                 // Draw solution counters
                 drawCircle((i + 0.5) * cellWidth, (j + 0.5) * cellHeight,
-                        circleRad, SOLUTION_FILL_COLOUR, SOLUTION_STROKE_COLOUR);
+                        circleRad*0.5, YELLOW_L, YELLOW_D);
             }
             if (maze[i][j] & 32) {
-                // Draw random counters
-                mazeContext.drawImage(component, (i+0.23)* cellWidth, (j-0.02) * cellHeight, circleRad * 5.4, circleRad * 5.1);
+                // Draw random counter
+                if (count != 4){
+                    while (collected.includes(count)){
+                        count++;
+                    }
+                    if (count == 2 || count == 3){
+                        mazeContext.drawImage(components[count], (i+0.23)* cellWidth, (j+0.025) * cellHeight, circleRad * 5.4, circleRad * 4.5);
+                    }
+                    else{
+                        mazeContext.drawImage(components[count], (i+0.23)* cellWidth, (j+0.025) * cellHeight, circleRad * 5.4, circleRad * 4.9);
+                    }
+                    xyCounter[`${i},${j}`] = count;
+                    count++;
+                }    
             }
         }
     }
@@ -1039,6 +1058,7 @@ function drawCounters() {
 function drawCircle(x, y, radius, fillStyle, strokeStyle) {
     // Draw a circle of radius `radius` centred on point (`x`, `y`)
 
+    mazeContext.lineWidth = 1;
     mazeContext.beginPath();
     mazeContext.arc(x, y, radius, 0, 2 * Math.PI, false);
     mazeContext.fillStyle = fillStyle;
@@ -1052,8 +1072,7 @@ function drawEnd() {
 
     mazeContext.lineWidth = 5;
 
-    drawCircle((end[0] + 0.5) * cellWidth, (end[1] + 0.5) * cellHeight,
-            circleRad, END_FILL_COLOUR, END_STROKE_COLOUR);
+    mazeContext.drawImage(lc3, (end[0]+0.2) * cellWidth, (end[1]+0.05) * cellHeight, circleRad * 5.4, circleRad * 4.4);
 
     mazeContext.lineWidth = 1;
 }
@@ -1169,48 +1188,48 @@ function drawStartMessage() {
     menuContext.fillStyle = NAVY_DARK;
     menuContext.fillText("Use WASD to navigate the maze",
                         0.5 * menuCanvas.width, 0.5 * menuCanvas.height+3);
-
-    drawIcon();
 }
 
 function drawWinMessage() {
     menuContext.lineWidth = 5;
 
-    drawRect(0.5 * menuCanvas.width - 350, 0.5 * menuCanvas.height - 60,
-             700, 225,
+    drawRect(0.5 * menuCanvas.width - 350, 0.5 * menuCanvas.height - 85,
+             700, 275,
              menuContext,
              PINK_PURPLE_L, PINK_PURPLE_D);
     menuContext.font = '50px "Varela Round"';
     menuContext.fillStyle = PINK_PURPLE_D;
     menuContext.fillText("Congratulations!",
-                     0.5 * menuCanvas.width, 0.5 * menuCanvas.height);
+                     0.5 * menuCanvas.width, 0.5 * menuCanvas.height-25);
     menuContext.font = '20px "Varela Round"';
     menuContext.fillText("You finished with " + timeLeft + " seconds to spare.",
-                         0.5 * menuCanvas.width, 0.5 * menuCanvas.height + 75);
+                         0.5 * menuCanvas.width, 0.5 * menuCanvas.height + 50);
 
     if (touchCapable) {
         menuContext.fillText("Touch the screen to play again.",
                              0.5 * menuCanvas.width,
-                             0.5 * menuCanvas.height + 125);
+                             0.5 * menuCanvas.height + 100);
     } else {
         menuContext.fillText("Press 'Enter' to play again.",
                              0.5 * menuCanvas.width,
-                             0.5 * menuCanvas.height + 125);
+                             0.5 * menuCanvas.height + 100);
     }
 
-    drawIcon();
+    menuContext.fillText("W3C3H4ck${try_to_type_i}",
+                         0.5 * menuCanvas.width, 0.5 * menuCanvas.height + 150);
+
     blurMaze();
 }
 
 function drawLostMessage() {
     menuContext.lineWidth = 5;
 
-    drawRect(0.5 * menuCanvas.width - 300, 0.5 * menuCanvas.height - 60,
-             600, 200,
+    drawRect(0.5 * menuCanvas.width - 350, 0.5 * menuCanvas.height - 70,
+             700, 200,
              menuContext,
-             DANGER_FILL_COLOUR, DANGER_STROKE_COLOUR);
+             RED_L, RED_D);
     menuContext.font = '60px "Varela Round"';
-    menuContext.fillStyle = DANGER_STROKE_COLOUR;
+    menuContext.fillStyle = RED_D;
     menuContext.fillText("Time's up!",
                          0.5 * menuCanvas.width,
                          0.5 * menuCanvas.height);
@@ -1226,7 +1245,6 @@ function drawLostMessage() {
                              0.5 * menuCanvas.height + 75);
     }
 
-    drawIcon();
     blurMaze();
 }
 
@@ -1283,12 +1301,12 @@ function drawTimer(time) {
     menuContext.globalAlpha = 1;
 
     if (time <= 10 && time > 5) {
-        menuContext.fillStyle = PINK_PURPLE_L;
-        menuContext.strokeStyle = PINK_PURPLE_D;
+        menuContext.fillStyle = PINK_L;
+        menuContext.strokeStyle = PINK_D;
         menuContext.globalAlpha = 0.5;
     } else if (time <= 5) {
-        menuContext.fillStyle = DANGER_FILL_COLOUR;
-        menuContext.strokeStyle = DANGER_STROKE_COLOUR;
+        menuContext.fillStyle = RED_L;
+        menuContext.strokeStyle = RED_D;
         menuContext.globalAlpha = 0.75;
     } else {
         menuContext.fillStyle = PINK_PURPLE_L;
@@ -1393,7 +1411,6 @@ function drawPauseMenu() {
     drawMaze();
     drawPlayer(playerPosX, playerPosY);
     blurMaze();
-    drawIcon();
 
     if (touchCapable) {
         drawTouchControls();
@@ -1404,7 +1421,7 @@ function drawPauseMenu() {
     menuContext.strokeStyle = "black";
     menuContext.fillText("PAUSED",
                          0.5 * menuCanvas.width,
-                         0.25 * menuCanvas.height);
+                         0.2 * menuCanvas.height);
 
     // Menu option sizes
     menuBoxWidth = 0.5 * menuCanvas.width;
@@ -1416,30 +1433,32 @@ function drawPauseMenu() {
     drawRect(menuContTopLeftX, menuContTopLeftY,
              menuBoxWidth, menuBoxHeight,
              menuContext,
-             RANDOM_FILL_COLOUR, "black");
+             PURPLE_L, PURPLE_D);
 
     menuRestartTopLeftX = 0.5 * (menuCanvas.width - menuBoxWidth);
     menuRestartTopLeftY = 0.6 * menuCanvas.height - 0.5 * menuBoxHeight;
     drawRect(menuRestartTopLeftX, menuRestartTopLeftY,
              menuBoxWidth, menuBoxHeight,
              menuContext,
-             MESSAGE_FILL_COLOUR, "black");
+             BLUE_G_L, BLUE_G_D);
 
     menuQuitTopLeftX = 0.5 * (menuCanvas.width - menuBoxWidth);
     menuQuitTopLeftY = 0.8 * menuCanvas.height - 0.5 * menuBoxHeight;
     drawRect(menuQuitTopLeftX, menuQuitTopLeftY,
              menuBoxWidth, menuBoxHeight,
              menuContext,
-             PLAYER_COLOUR, "black");
+             TURQ_L, TURQ_D);
 
-    menuContext.fillStyle = "black";
-    menuContext.fillText("(C)ontinue",
+    menuContext.fillStyle = PURPLE_D;
+    menuContext.fillText("Continue",
                          0.5 * menuCanvas.width,
                          0.4 * menuCanvas.height);
-    menuContext.fillText("(R)estart",
+    menuContext.fillStyle = BLUE_G_D;
+    menuContext.fillText("Restart",
                          0.5 * menuCanvas.width,
                          0.6 * menuCanvas.height)
-    menuContext.fillText("(Q)uit",
+    menuContext.fillStyle = TURQ_D;
+    menuContext.fillText("Quit",
                          0.5 * menuCanvas.width,
                          0.8 * menuCanvas.height);
 
@@ -1583,6 +1602,8 @@ function restartCurrentGame() {
     // Replace all the collected counters
     removeCounters();
     placeCounters();
+    collected = [];
+    xyCounter = {};
 
     drawAll(playerPosX, playerPosY);
 
@@ -1611,6 +1632,10 @@ function quitGame() {
     // Redraw the main menu, exiting the current game
     drawMenu();
 
+    // reset counters
+    collected = [];
+    xyCounter = {};
+
     // Remove the menu event listeners
     window.removeEventListener("keydown", pauseMenuKeyboardSelection, false);
     window.removeEventListener("click", pauseMenuMouseSelection, false);
@@ -1622,28 +1647,28 @@ function drawPauseButton() {
     // Draws a small pause button in bottom left for cilcking/touching in
     // place of Escape key
 
-    menuContext.globalAlpha = 0.5;
+    menuContext.globalAlpha = 0.7;
 
-    menuContext.fillStyle = END_FILL_COLOUR;
-    menuContext.strokeStyle = END_STROKE_COLOUR;
+    menuContext.fillStyle = PINK_L;
+    menuContext.strokeStyle = PINK_D;
     menuContext.lineWidth = 5;
 
-    drawRect(PAUSE_OFFSET_X,
-             menuCanvas.height - BOX_HEIGHT - PAUSE_OFFSET_Y,
-             BOX_WIDTH,
-             BOX_HEIGHT,
+    drawRect(PAUSE_OFFSET_X*2,
+             menuCanvas.height - BOX_HEIGHT*0.9 - PAUSE_OFFSET_Y,
+             BOX_WIDTH*0.8,
+             BOX_HEIGHT*0.8,
              menuContext,
-             END_FILL_COLOUR, END_STROKE_COLOUR);
+             PINK_L, PINK_D);
 
     menuContext.lineWidth = 10;
-    drawLine(PAUSE_OFFSET_X + 0.33 * BOX_WIDTH,
+    drawLine(PAUSE_OFFSET_X + 0.3 * BOX_WIDTH,
              menuCanvas.height - PAUSE_OFFSET_Y - 0.75 * BOX_HEIGHT,
-             PAUSE_OFFSET_X + 0.33 * BOX_WIDTH,
+             PAUSE_OFFSET_X + 0.3 * BOX_WIDTH,
              menuCanvas.height - PAUSE_OFFSET_Y - 0.25 * BOX_HEIGHT,
              menuContext);
-    drawLine(PAUSE_OFFSET_X + 0.66 * BOX_WIDTH,
+    drawLine(PAUSE_OFFSET_X + 0.55 * BOX_WIDTH,
              menuCanvas.height - PAUSE_OFFSET_Y - 0.75 * BOX_HEIGHT,
-             PAUSE_OFFSET_X + 0.66 * BOX_WIDTH,
+             PAUSE_OFFSET_X + 0.55 * BOX_WIDTH,
              menuCanvas.height - PAUSE_OFFSET_Y - 0.25 * BOX_HEIGHT,
              menuContext);
     menuContext.lineWidth = 1;
