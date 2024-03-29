@@ -13,13 +13,15 @@ body{
   min-height: 100vh;
   background: #6563FF;
 }
-.wrapper{
+
+.wrapper {
   padding: 25px;
   border-radius: 10px;
   background: #F8F8F8;
   box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
-.cards, .card, .view{
+
+.cards, .card, .view {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -109,4 +111,11 @@ body{
   .card .back-view img{
     max-width: 50px;
   }
+}
+
+.win-text {
+  text-align: center;
+  font-size: 1.5em;
+  color: white;
+  margin-bottom: 2rem;
 }

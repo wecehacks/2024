@@ -15,9 +15,6 @@ function flipCard({target: clickedCard}) {
         var oneName = cardOneImg.replace(/^.*[\\\/]/, '');
         var twoName = cardTwoImg.replace(/^.*[\\\/]/, '');
         matchCards(oneName, twoName);
-        console.log(oneName);
-        console.log(twoName);
-        
     }
 }
 function matchCards(img1, img2) {
@@ -25,15 +22,13 @@ function matchCards(img1, img2) {
     num1 = parseInt(str1);
     str2 = img2.substring(0, img2.length-4);
     num2 = parseInt(str2);
-    console.log(str1);
-    console.log(num1);
     if ( (num1%2!=0 && num2 == num1+1) || (num1%2==0 && num2 == num1-1)) {
     // if(img1 === img2) {
         matched++;
         if(matched == 8) {
-            setTimeout(() => {
-                return shuffleCard();
-            }, 1000);
+            winTarget = document.getElementById("win-text-target")
+            winTarget.textContent = "You win! Flag: W3C3H4ck${1_l0v3_ece_120}"
+            console.log("win")
         }
         cardOne.removeEventListener("click", flipCard);
         cardTwo.removeEventListener("click", flipCard);
