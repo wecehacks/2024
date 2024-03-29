@@ -38,8 +38,9 @@ body {
 }
 
 .footer-section {
-	margin-top: -2em;
-	padding: 2em 0 2em 0;
+	position: absolute;
+  width: 100%;
+  bottom: 0;
 	opacity: 1;
 }
 
