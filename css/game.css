@@ -72,6 +72,7 @@
   .game-card {
     height: 80%;
     align-items: center;
+    margin: 1rem;
   }
   
   .game-textbox {
